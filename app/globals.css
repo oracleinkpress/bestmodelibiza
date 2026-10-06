@@ -4,8 +4,8 @@
 
 @layer base {
   :root {
-    --background: #08080c;
-    --foreground: #f3f3f6;
+    --background: #050507;
+    --foreground: #f5f5f7;
   }
   
   body {
@@ -16,33 +16,49 @@
   }
 }
 
-/* Custom luxury scrollbar */
+/* Custom luxury copper scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0c0d12;
+  background: #08080c;
 }
 ::-webkit-scrollbar-thumb {
-  background: #2a2d3d;
-  border-radius: 3px;
+  background: #241c18;
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #d4af37;
+  background: #c87d55;
 }
 
-/* Luxury gold text glow */
-.text-gold-gradient {
-  background: linear-gradient(135deg, #f7e7b4 0%, #d4af37 50%, #aa820a 100%);
+/* Metallic Copper Text Gradient */
+.text-copper-gradient {
+  background: linear-gradient(135deg, #FBE0D0 0%, #E29672 30%, #C87D55 70%, #8A4624 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.gold-border-glow {
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+/* Copper Glow Effects */
+.copper-border-glow {
+  box-shadow: 0 0 20px rgba(200, 125, 85, 0.18);
 }
 
-.gold-border-glow:hover {
-  box-shadow: 0 0 25px rgba(212, 175, 55, 0.35);
+.copper-border-glow:hover {
+  box-shadow: 0 0 35px rgba(200, 125, 85, 0.38);
+}
+
+.copper-ambient-bg {
+  background: radial-gradient(circle at 50% 20%, rgba(200, 125, 85, 0.12) 0%, rgba(5, 5, 7, 0) 70%);
+}
+
+/* Universal Smooth Curve Utility for Images */
+.curved-box {
+  border-radius: 28px;
+  overflow: hidden;
+}
+
+.curved-box-lg {
+  border-radius: 36px;
+  overflow: hidden;
 }

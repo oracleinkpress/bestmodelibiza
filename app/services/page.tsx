@@ -14,24 +14,24 @@ export default function ServicesPage() {
       
       {/* Services Header */}
       <div className="text-center max-w-3xl mx-auto space-y-4">
-        <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs font-semibold uppercase tracking-wider">
-          <Sparkles className="w-3.5 h-3.5" />
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-copper-500/15 border border-copper-500/40 text-copper-300 text-xs font-bold uppercase tracking-wider shadow-[0_0_15px_rgba(200,125,85,0.2)]">
+          <Sparkles className="w-3.5 h-3.5 text-copper-400" />
           <span>Bespoke Companionship Experiences</span>
         </div>
         <h1 className="text-4xl sm:text-5xl font-extrabold text-white">
-          Elite VIP Escort Services in Ibiza
+          Elite VIP Escort Services in <span className="text-copper-gradient">Ibiza</span>
         </h1>
         <p className="text-sm sm:text-base text-neutral-300 leading-relaxed font-light">
           We curate unforgettable, discreet companionship tailored to international high-net-worth individuals, entrepreneurs, and connoisseurs of luxury living.
         </p>
       </div>
 
-      {/* Services Grid */}
+      {/* Services Grid with Curved Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         
         {/* Yacht Charters */}
-        <div className="p-8 rounded-3xl bg-[#0e0f17] border border-[#202232] space-y-4 hover:border-gold-500/40 transition-all">
-          <div className="w-14 h-14 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400">
+        <div className="p-8 sm:p-10 rounded-[36px] bg-[#09090e] border border-[#241e19] space-y-4 hover:border-copper-500/50 transition-all shadow-lg hover:shadow-[0_0_30px_rgba(200,125,85,0.2)]">
+          <div className="w-14 h-14 rounded-2xl bg-copper-500/10 border border-copper-500/30 flex items-center justify-center text-copper-400">
             <Ship className="w-7 h-7" />
           </div>
           <h2 className="text-2xl font-bold text-white">Superyacht Hostesses &amp; Boat Charters</h2>
@@ -46,8 +46,8 @@ export default function ServicesPage() {
         </div>
 
         {/* Private Villa Out-Calls */}
-        <div className="p-8 rounded-3xl bg-[#0e0f17] border border-[#202232] space-y-4 hover:border-gold-500/40 transition-all">
-          <div className="w-14 h-14 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400">
+        <div className="p-8 sm:p-10 rounded-[36px] bg-[#09090e] border border-[#241e19] space-y-4 hover:border-copper-500/50 transition-all shadow-lg hover:shadow-[0_0_30px_rgba(200,125,85,0.2)]">
+          <div className="w-14 h-14 rounded-2xl bg-copper-500/10 border border-copper-500/30 flex items-center justify-center text-copper-400">
             <Crown className="w-7 h-7" />
           </div>
           <h2 className="text-2xl font-bold text-white">Private Villa Companionship</h2>
@@ -62,8 +62,8 @@ export default function ServicesPage() {
         </div>
 
         {/* Fine Dining & Galas */}
-        <div className="p-8 rounded-3xl bg-[#0e0f17] border border-[#202232] space-y-4 hover:border-gold-500/40 transition-all">
-          <div className="w-14 h-14 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400">
+        <div className="p-8 sm:p-10 rounded-[36px] bg-[#09090e] border border-[#241e19] space-y-4 hover:border-copper-500/50 transition-all shadow-lg hover:shadow-[0_0_30px_rgba(200,125,85,0.2)]">
+          <div className="w-14 h-14 rounded-2xl bg-copper-500/10 border border-copper-500/30 flex items-center justify-center text-copper-400">
             <Wine className="w-7 h-7" />
           </div>
           <h2 className="text-2xl font-bold text-white">Fine Dining, VIP Clubs &amp; Events</h2>
@@ -78,8 +78,8 @@ export default function ServicesPage() {
         </div>
 
         {/* International Travel */}
-        <div className="p-8 rounded-3xl bg-[#0e0f17] border border-[#202232] space-y-4 hover:border-gold-500/40 transition-all">
-          <div className="w-14 h-14 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400">
+        <div className="p-8 sm:p-10 rounded-[36px] bg-[#09090e] border border-[#241e19] space-y-4 hover:border-copper-500/50 transition-all shadow-lg hover:shadow-[0_0_30px_rgba(200,125,85,0.2)]">
+          <div className="w-14 h-14 rounded-2xl bg-copper-500/10 border border-copper-500/30 flex items-center justify-center text-copper-400">
             <Plane className="w-7 h-7" />
           </div>
           <h2 className="text-2xl font-bold text-white">International Fly-Me-To-You Travel</h2>
@@ -95,10 +95,10 @@ export default function ServicesPage() {
 
       </div>
 
-      {/* Discretion Commitment & Booking CTA */}
-      <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-[#171926] via-[#0d0e17] to-[#171926] border border-[#26293d] text-center space-y-6">
-        <Shield className="w-12 h-12 text-gold-400 mx-auto" />
-        <h2 className="text-3xl font-bold text-white max-w-xl mx-auto">
+      {/* Discretion Commitment & Booking CTA with Curves */}
+      <div className="p-8 sm:p-12 rounded-[40px] bg-gradient-to-r from-[#14121a] via-[#09080e] to-[#14121a] border border-[#2c221a] text-center space-y-6 shadow-[0_0_40px_rgba(200,125,85,0.2)]">
+        <Shield className="w-12 h-12 text-copper-400 mx-auto" />
+        <h2 className="text-3xl font-extrabold text-white max-w-xl mx-auto">
           Ready to Arrange Your Next Unforgettable Experience?
         </h2>
         <p className="text-xs sm:text-sm text-neutral-300 max-w-lg mx-auto">
@@ -109,14 +109,14 @@ export default function ServicesPage() {
             href="https://wa.me/34678012530?text=Hello%2C%20I%20would%20like%20to%20arrange%20a%20VIP%20service%20via%20Best%20Model%20Ibiza"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-8 py-3.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2 shadow-lg"
+            className="px-8 py-4 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold text-xs uppercase tracking-wider transition-all flex items-center gap-2 shadow-lg"
           >
             <MessageSquare className="w-4 h-4" />
             <span>Chat with VIP Concierge</span>
           </a>
           <Link
             href="/"
-            className="px-8 py-3.5 rounded-full bg-[#181a28] hover:bg-gold-500 hover:text-black text-gold-400 font-bold text-xs uppercase tracking-wider border border-gold-500/40 transition-all"
+            className="px-8 py-4 rounded-2xl bg-[#121118] hover:bg-gradient-to-r hover:from-copper-500 hover:to-copper-600 hover:text-white text-copper-300 font-extrabold text-xs uppercase tracking-wider border border-copper-500/40 transition-all shadow-md"
           >
             Browse All Models
           </Link>

@@ -39,12 +39,12 @@ export default function ContactPage() {
       
       {/* Header */}
       <div className="text-center max-w-2xl mx-auto space-y-3">
-        <span className="text-xs font-bold text-gold-400 uppercase tracking-widest flex items-center justify-center gap-1.5">
+        <span className="text-xs font-bold text-copper-400 uppercase tracking-widest flex items-center justify-center gap-1.5">
           <Sparkles className="w-3.5 h-3.5" />
-          Discreet Concierge
+          Discreet VIP Concierge
         </span>
         <h1 className="text-3xl sm:text-5xl font-extrabold text-white">
-          Contact Best Model Ibiza
+          Contact <span className="text-copper-gradient">Best Model Ibiza</span>
         </h1>
         <p className="text-xs sm:text-sm text-neutral-300">
           We pride ourselves on swift, private, and confidential communication 24 hours a day, 7 days a week.
@@ -53,10 +53,10 @@ export default function ContactPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        {/* Contact Info & Direct Channels (5 cols) */}
+        {/* Contact Info & Direct Channels with Curves (5 cols) */}
         <div className="lg:col-span-5 space-y-6">
           
-          <div className="p-6 rounded-3xl bg-[#0e0f17] border border-[#202232] space-y-4">
+          <div className="p-7 rounded-[36px] bg-[#09090e] border border-[#231d17] space-y-4 shadow-xl">
             <h3 className="text-base font-bold text-white uppercase tracking-wider">
               Immediate VIP Assistance
             </h3>
@@ -68,7 +68,7 @@ export default function ContactPage() {
               href="https://wa.me/34678012530?text=Hello%2C%20I%20would%20like%20to%20inquire%20via%20Best%20Model%20Ibiza"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20 transition-all font-medium text-xs"
+              className="flex items-center gap-3 p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20 transition-all font-medium text-xs"
             >
               <MessageSquare className="w-5 h-5 shrink-0" />
               <div>
@@ -77,16 +77,16 @@ export default function ContactPage() {
               </div>
             </a>
 
-            <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-[#141520] border border-[#222434] text-neutral-300 text-xs">
-              <Phone className="w-5 h-5 text-gold-400 shrink-0" />
+            <div className="flex items-center gap-3 p-4 rounded-2xl bg-[#121118] border border-[#241e1b] text-neutral-300 text-xs">
+              <Phone className="w-5 h-5 text-copper-400 shrink-0" />
               <div>
                 <strong className="block text-white text-sm">Direct Phone</strong>
                 <span>+34 678 012 530</span>
               </div>
             </div>
 
-            <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-[#141520] border border-[#222434] text-neutral-300 text-xs">
-              <Mail className="w-5 h-5 text-gold-400 shrink-0" />
+            <div className="flex items-center gap-3 p-4 rounded-2xl bg-[#121118] border border-[#241e1b] text-neutral-300 text-xs">
+              <Mail className="w-5 h-5 text-copper-400 shrink-0" />
               <div>
                 <strong className="block text-white text-sm">Encrypted Email</strong>
                 <span>contact@bestmodelibiza.com</span>
@@ -94,9 +94,9 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Privacy Guarantee Box */}
-          <div className="p-6 rounded-3xl bg-gradient-to-br from-[#12131d] to-[#0c0d13] border border-[#202230] space-y-3">
-            <div className="flex items-center gap-2 text-gold-400 text-sm font-bold">
+          {/* Privacy Guarantee Box with Curves */}
+          <div className="p-7 rounded-[36px] bg-gradient-to-br from-[#121017] to-[#08080c] border border-[#261f18] space-y-3 shadow-lg">
+            <div className="flex items-center gap-2 text-copper-400 text-sm font-bold">
               <Shield className="w-5 h-5" />
               <span>Strict Privacy Guarantee</span>
             </div>
@@ -107,11 +107,11 @@ export default function ContactPage() {
 
         </div>
 
-        {/* Contact Form (7 cols) */}
-        <div className="lg:col-span-7 bg-[#0e0f17] p-8 rounded-3xl border border-[#202232] shadow-2xl">
+        {/* Contact Form with Curves (7 cols) */}
+        <div className="lg:col-span-7 bg-[#09090e] p-8 sm:p-10 rounded-[36px] border border-[#231d17] shadow-2xl">
           {!submitted ? (
             <form onSubmit={handleSubmit} className="space-y-4">
-              <h3 className="text-xl font-bold text-white">Send Us a Private Message</h3>
+              <h3 className="text-xl font-bold text-white uppercase tracking-wide">Send Us a Private Message</h3>
 
               <div>
                 <label className="block text-xs font-medium text-neutral-300 mb-1">
@@ -123,7 +123,7 @@ export default function ContactPage() {
                   placeholder="Your Name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full bg-[#151722] border border-[#262838] rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500"
+                  className="w-full bg-[#131219] border border-[#261f1a] rounded-2xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-copper-500"
                 />
               </div>
 
@@ -137,7 +137,7 @@ export default function ContactPage() {
                     placeholder="email@example.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full bg-[#151722] border border-[#262838] rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500"
+                    className="w-full bg-[#131219] border border-[#261f1a] rounded-2xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-copper-500"
                   />
                 </div>
 
@@ -150,7 +150,7 @@ export default function ContactPage() {
                     placeholder="+34 ..."
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full bg-[#151722] border border-[#262838] rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500"
+                    className="w-full bg-[#131219] border border-[#261f1a] rounded-2xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-copper-500"
                   />
                 </div>
               </div>
@@ -165,14 +165,14 @@ export default function ContactPage() {
                   placeholder="Inquiry details, model preferences, dates, or specific requirements..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full bg-[#151722] border border-[#262838] rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500"
+                  className="w-full bg-[#131219] border border-[#261f1a] rounded-2xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-copper-500"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full py-3.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-black font-extrabold text-xs uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(212,175,55,0.4)] flex items-center justify-center gap-2"
+                className="w-full py-4 rounded-2xl bg-gradient-to-r from-copper-500 via-copper-600 to-copper-500 hover:from-copper-400 hover:to-copper-600 text-white font-extrabold text-xs uppercase tracking-wider transition-all shadow-[0_0_25px_rgba(200,125,85,0.4)] flex items-center justify-center gap-2"
               >
                 <Send className="w-4 h-4" />
                 <span>{submitting ? 'Transmitting...' : 'Send Discreet Message'}</span>

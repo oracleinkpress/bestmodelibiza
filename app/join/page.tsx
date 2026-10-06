@@ -49,44 +49,44 @@ export default function JoinAgencyPage() {
       
       {/* Header */}
       <div className="text-center space-y-3">
-        <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest flex items-center justify-center gap-1.5">
+        <span className="text-xs font-bold text-copper-400 uppercase tracking-widest flex items-center justify-center gap-1.5">
           <Sparkles className="w-3.5 h-3.5" />
           Model Recruitment 2026
         </span>
         <h1 className="text-3xl sm:text-5xl font-extrabold text-white">
-          Join Best Model Ibiza
+          Join <span className="text-copper-gradient">Best Model Ibiza</span>
         </h1>
         <p className="text-sm text-neutral-300 max-w-xl mx-auto leading-relaxed">
           We invite confident, elegant ladies and gentlemen to join our prestigious roster. Enjoy high earnings, premium clientele, complete privacy, and full autonomy.
         </p>
       </div>
 
-      {/* Perks Cards */}
+      {/* Perks Cards with Curves */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="p-4 rounded-2xl bg-[#0f1019] border border-[#202232] text-center space-y-1">
-          <ShieldCheck className="w-6 h-6 text-gold-400 mx-auto" />
-          <h4 className="text-white font-bold text-xs">Maximum Discretion</h4>
+        <div className="p-5 rounded-[26px] bg-[#09090e] border border-[#231d17] text-center space-y-1.5">
+          <ShieldCheck className="w-7 h-7 text-copper-400 mx-auto" />
+          <h4 className="text-white font-bold text-xs uppercase">Maximum Discretion</h4>
           <p className="text-[11px] text-neutral-400">Strictly confidential handling of your private data.</p>
         </div>
 
-        <div className="p-4 rounded-2xl bg-[#0f1019] border border-[#202232] text-center space-y-1">
-          <Heart className="w-6 h-6 text-gold-400 mx-auto" />
-          <h4 className="text-white font-bold text-xs">Verified High-End Clients</h4>
-          <p className="text-[11px] text-neutral-400">Polite, screened gentlemen & international executives.</p>
+        <div className="p-5 rounded-[26px] bg-[#09090e] border border-[#231d17] text-center space-y-1.5">
+          <Heart className="w-7 h-7 text-copper-400 mx-auto" />
+          <h4 className="text-white font-bold text-xs uppercase">Verified High-End Clients</h4>
+          <p className="text-[11px] text-neutral-400">Polite, screened gentlemen &amp; international executives.</p>
         </div>
 
-        <div className="p-4 rounded-2xl bg-[#0f1019] border border-[#202232] text-center space-y-1">
-          <Sparkles className="w-6 h-6 text-gold-400 mx-auto" />
-          <h4 className="text-white font-bold text-xs">Flexible Scheduling</h4>
+        <div className="p-5 rounded-[26px] bg-[#09090e] border border-[#231d17] text-center space-y-1.5">
+          <Sparkles className="w-7 h-7 text-copper-400 mx-auto" />
+          <h4 className="text-white font-bold text-xs uppercase">Flexible Scheduling</h4>
           <p className="text-[11px] text-neutral-400">Work when and where you want, with direct payouts.</p>
         </div>
       </div>
 
-      {/* Application Form */}
-      <div className="bg-[#0e0f17] p-8 sm:p-10 rounded-3xl border border-[#222436] shadow-2xl">
+      {/* Application Form with Curves */}
+      <div className="bg-[#09090e] p-8 sm:p-10 rounded-[36px] border border-[#261f19] shadow-2xl">
         {!submitted ? (
           <form onSubmit={handleSubmit} className="space-y-4">
-            <h3 className="text-lg font-bold text-white mb-2">
+            <h3 className="text-lg font-bold text-white mb-2 uppercase tracking-wide">
               Confidential Application Form
             </h3>
 
@@ -101,7 +101,7 @@ export default function JoinAgencyPage() {
                   placeholder="e.g. Scarlett"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full bg-[#151722] border border-[#262838] rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500"
+                  className="w-full bg-[#131219] border border-[#261f1a] rounded-2xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-copper-500"
                 />
               </div>
 
@@ -115,7 +115,7 @@ export default function JoinAgencyPage() {
                   placeholder="+34 ..."
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full bg-[#151722] border border-[#262838] rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500"
+                  className="w-full bg-[#131219] border border-[#261f1a] rounded-2xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-copper-500"
                 />
               </div>
             </div>
@@ -131,7 +131,7 @@ export default function JoinAgencyPage() {
                   placeholder="Must be 18+"
                   value={formData.age}
                   onChange={(e) => setFormData({ ...formData, age: e.target.value })}
-                  className="w-full bg-[#151722] border border-[#262838] rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500"
+                  className="w-full bg-[#131219] border border-[#261f1a] rounded-2xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-copper-500"
                 />
               </div>
 
@@ -145,7 +145,7 @@ export default function JoinAgencyPage() {
                   placeholder="e.g. Spanish, Colombian..."
                   value={formData.nationality}
                   onChange={(e) => setFormData({ ...formData, nationality: e.target.value })}
-                  className="w-full bg-[#151722] border border-[#262838] rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500"
+                  className="w-full bg-[#131219] border border-[#261f1a] rounded-2xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-copper-500"
                 />
               </div>
 
@@ -159,7 +159,7 @@ export default function JoinAgencyPage() {
                   placeholder="e.g. Ibiza, Madrid..."
                   value={formData.city}
                   onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                  className="w-full bg-[#151722] border border-[#262838] rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500"
+                  className="w-full bg-[#131219] border border-[#261f1a] rounded-2xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-copper-500"
                 />
               </div>
             </div>
@@ -174,7 +174,7 @@ export default function JoinAgencyPage() {
                   placeholder="e.g. 170 cm / 55 kg"
                   value={formData.height}
                   onChange={(e) => setFormData({ ...formData, height: e.target.value })}
-                  className="w-full bg-[#151722] border border-[#262838] rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500"
+                  className="w-full bg-[#131219] border border-[#261f1a] rounded-2xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-copper-500"
                 />
               </div>
 
@@ -187,7 +187,7 @@ export default function JoinAgencyPage() {
                   placeholder="contact@..."
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full bg-[#151722] border border-[#262838] rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500"
+                  className="w-full bg-[#131219] border border-[#261f1a] rounded-2xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-copper-500"
                 />
               </div>
             </div>
@@ -201,14 +201,14 @@ export default function JoinAgencyPage() {
                 placeholder="Languages spoken, availability, in-call/out-call preferences..."
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full bg-[#151722] border border-[#262838] rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500"
+                className="w-full bg-[#131219] border border-[#261f1a] rounded-2xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-copper-500"
               />
             </div>
 
             <button
               type="submit"
               disabled={submitting}
-              className="w-full py-3.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-black font-extrabold text-xs uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(212,175,55,0.4)] flex items-center justify-center gap-2"
+              className="w-full py-4 rounded-2xl bg-gradient-to-r from-copper-500 via-copper-600 to-copper-500 hover:from-copper-400 hover:to-copper-600 text-white font-extrabold text-xs uppercase tracking-wider transition-all shadow-[0_0_25px_rgba(200,125,85,0.4)] flex items-center justify-center gap-2"
             >
               <Send className="w-4 h-4" />
               <span>{submitting ? 'Transmitting Details...' : 'Submit Casting Application'}</span>

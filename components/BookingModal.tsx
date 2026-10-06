@@ -52,7 +52,6 @@ export function BookingModal({ model, isOpen, onClose }: BookingModalProps) {
       setIsSubmitted(true);
     } catch (err: any) {
       console.error('Booking submission error:', err);
-      // Even if network fails, we allow user to forward directly to WhatsApp
       setIsSubmitted(true);
     } finally {
       setIsSubmitting(false);
@@ -64,13 +63,13 @@ export function BookingModal({ model, isOpen, onClose }: BookingModalProps) {
   )}`;
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-      <div className="bg-[#0f1018] border border-[#232638] rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 relative shadow-2xl">
+    <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
+      <div className="bg-[#0a0a0f] border border-[#2b221c] rounded-[36px] max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 relative shadow-[0_0_50px_rgba(200,125,85,0.2)]">
         
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-full bg-neutral-800 text-neutral-400 hover:text-white"
+          className="absolute top-5 right-5 p-2.5 rounded-full bg-[#16141c] border border-[#26201b] text-neutral-400 hover:text-white"
         >
           <X className="w-5 h-5" />
         </button>
@@ -78,13 +77,13 @@ export function BookingModal({ model, isOpen, onClose }: BookingModalProps) {
         {!isSubmitted ? (
           <form onSubmit={handleSubmit} className="space-y-4">
             
-            <div className="text-center pb-2 border-b border-[#1f2130]">
-              <span className="text-[11px] font-bold text-gold-400 uppercase tracking-widest flex items-center justify-center gap-1">
+            <div className="text-center pb-2 border-b border-[#1f1a16]">
+              <span className="text-[11px] font-bold text-copper-400 uppercase tracking-widest flex items-center justify-center gap-1">
                 <Sparkles className="w-3.5 h-3.5" />
                 Discreet VIP Reservation
               </span>
-              <h3 className="text-xl font-bold text-white mt-1 uppercase">
-                Book with {model.name}
+              <h3 className="text-xl font-extrabold text-white mt-1 uppercase">
+                Book with <span className="text-copper-gradient">{model.name}</span>
               </h3>
               <p className="text-xs text-neutral-400 mt-0.5">
                 All inquiries are 100% confidential and handled personally.
@@ -103,13 +102,13 @@ export function BookingModal({ model, isOpen, onClose }: BookingModalProps) {
                   placeholder="e.g. Alexander"
                   value={formData.clientName}
                   onChange={(e) => setFormData({ ...formData, clientName: e.target.value })}
-                  className="w-full bg-[#161824] border border-[#282b3d] rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500"
+                  className="w-full bg-[#131219] border border-[#261f1a] rounded-2xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-copper-500"
                 />
               </div>
 
               <div>
                 <label className="block text-xs font-medium text-neutral-300 mb-1">
-                  Phone / WhatsApp / Telegram *
+                  Phone / WhatsApp *
                 </label>
                 <input
                   type="text"
@@ -117,7 +116,7 @@ export function BookingModal({ model, isOpen, onClose }: BookingModalProps) {
                   placeholder="+34 ..."
                   value={formData.clientContact}
                   onChange={(e) => setFormData({ ...formData, clientContact: e.target.value })}
-                  className="w-full bg-[#161824] border border-[#282b3d] rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500"
+                  className="w-full bg-[#131219] border border-[#261f1a] rounded-2xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-copper-500"
                 />
               </div>
             </div>
@@ -132,7 +131,7 @@ export function BookingModal({ model, isOpen, onClose }: BookingModalProps) {
                   type="date"
                   value={formData.bookingDate}
                   onChange={(e) => setFormData({ ...formData, bookingDate: e.target.value })}
-                  className="w-full bg-[#161824] border border-[#282b3d] rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-gold-500"
+                  className="w-full bg-[#131219] border border-[#261f1a] rounded-2xl px-3 py-2 text-xs text-white focus:outline-none focus:border-copper-500"
                 />
               </div>
 
@@ -144,7 +143,7 @@ export function BookingModal({ model, isOpen, onClose }: BookingModalProps) {
                   type="time"
                   value={formData.bookingTime}
                   onChange={(e) => setFormData({ ...formData, bookingTime: e.target.value })}
-                  className="w-full bg-[#161824] border border-[#282b3d] rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-gold-500"
+                  className="w-full bg-[#131219] border border-[#261f1a] rounded-2xl px-3 py-2 text-xs text-white focus:outline-none focus:border-copper-500"
                 />
               </div>
             </div>
@@ -158,7 +157,7 @@ export function BookingModal({ model, isOpen, onClose }: BookingModalProps) {
                 <select
                   value={formData.duration}
                   onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
-                  className="w-full bg-[#161824] border border-[#282b3d] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500 cursor-pointer"
+                  className="w-full bg-[#131219] border border-[#261f1a] rounded-2xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-copper-500 cursor-pointer"
                 >
                   <option value="2 Hours">2 Hours</option>
                   <option value="3 Hours">3 Hours</option>
@@ -176,7 +175,7 @@ export function BookingModal({ model, isOpen, onClose }: BookingModalProps) {
                 <select
                   value={formData.locationType}
                   onChange={(e) => setFormData({ ...formData, locationType: e.target.value })}
-                  className="w-full bg-[#161824] border border-[#282b3d] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500 cursor-pointer"
+                  className="w-full bg-[#131219] border border-[#261f1a] rounded-2xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-copper-500 cursor-pointer"
                 >
                   <option value="Private Villa">Private Villa</option>
                   <option value="5-Star Luxury Hotel">5-Star Luxury Hotel</option>
@@ -197,7 +196,7 @@ export function BookingModal({ model, isOpen, onClose }: BookingModalProps) {
                 placeholder="e.g. Marina Botafoch, Ibiza Gran Hotel, Santa Eulalia..."
                 value={formData.locationAddress}
                 onChange={(e) => setFormData({ ...formData, locationAddress: e.target.value })}
-                className="w-full bg-[#161824] border border-[#282b3d] rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500"
+                className="w-full bg-[#131219] border border-[#261f1a] rounded-2xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-copper-500"
               />
             </div>
 
@@ -211,7 +210,7 @@ export function BookingModal({ model, isOpen, onClose }: BookingModalProps) {
                 placeholder="Dress code, travel requirements, dinner preferences..."
                 value={formData.specialRequests}
                 onChange={(e) => setFormData({ ...formData, specialRequests: e.target.value })}
-                className="w-full bg-[#161824] border border-[#282b3d] rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:border-gold-500"
+                className="w-full bg-[#131219] border border-[#261f1a] rounded-2xl px-3.5 py-2 text-xs text-white focus:outline-none focus:border-copper-500"
               />
             </div>
 
@@ -219,15 +218,15 @@ export function BookingModal({ model, isOpen, onClose }: BookingModalProps) {
               <p className="text-xs text-rose-400">{errorMessage}</p>
             )}
 
-            {/* Submit Buttons */}
+            {/* Submit Buttons with Curves */}
             <div className="pt-2 space-y-2">
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-black font-bold text-xs uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(212,175,55,0.3)] flex items-center justify-center gap-2"
+                className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-copper-500 via-copper-600 to-copper-500 hover:from-copper-400 hover:to-copper-600 text-white font-extrabold text-xs uppercase tracking-wider transition-all shadow-[0_0_25px_rgba(200,125,85,0.4)] flex items-center justify-center gap-2"
               >
                 <Send className="w-4 h-4" />
-                <span>{isSubmitting ? 'Submitting Reservation...' : 'Submit Discreet Inquiry'}</span>
+                <span>{isSubmitting ? 'Submitting Reservation...' : 'Submit Discreet VIP Inquiry'}</span>
               </button>
 
               <div className="text-center text-[11px] text-neutral-500">or</div>
@@ -236,7 +235,7 @@ export function BookingModal({ model, isOpen, onClose }: BookingModalProps) {
                 href={whatsappDirectUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-2.5 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-400 font-semibold text-xs transition-all flex items-center justify-center gap-2"
+                className="w-full py-3 rounded-2xl bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-400 font-bold text-xs transition-all flex items-center justify-center gap-2"
               >
                 <MessageSquare className="w-4 h-4" />
                 <span>Book Instantly on VIP WhatsApp</span>
@@ -264,7 +263,7 @@ export function BookingModal({ model, isOpen, onClose }: BookingModalProps) {
                 href={whatsappDirectUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-lg"
+                className="w-full py-3.5 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-lg"
               >
                 <MessageSquare className="w-4 h-4" />
                 <span>Accelerate Confirmation on WhatsApp</span>
@@ -272,7 +271,7 @@ export function BookingModal({ model, isOpen, onClose }: BookingModalProps) {
 
               <button
                 onClick={onClose}
-                className="w-full py-2.5 rounded-xl bg-[#171924] text-neutral-300 text-xs font-semibold hover:bg-[#202232]"
+                className="w-full py-2.5 rounded-2xl bg-[#171620] text-neutral-300 text-xs font-semibold hover:bg-[#201f2c]"
               >
                 Close Window
               </button>

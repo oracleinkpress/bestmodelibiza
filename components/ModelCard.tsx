@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { Sparkles, MapPin, MessageSquare, Camera, CheckCircle } from 'lucide-react';
 import { Model } from '@/lib/models';
 import { resolveImageUrl } from '@/lib/cloudflare';
@@ -20,63 +19,62 @@ export function ModelCard({ model }: ModelCardProps) {
   )}`;
 
   return (
-    <div className="group relative bg-[#0e0f16] rounded-2xl overflow-hidden border border-[#1e202d] hover:border-gold-500/60 transition-all duration-300 hover:shadow-[0_0_25px_rgba(212,175,55,0.2)] flex flex-col">
+    <div className="group relative bg-[#0a0a0f] rounded-[28px] overflow-hidden border border-[#221c17] hover:border-copper-500/70 transition-all duration-500 hover:shadow-[0_0_30px_rgba(200,125,85,0.25)] flex flex-col p-2.5">
       
-      {/* Image Container with 4:5 Aspect Ratio */}
-      <Link href={`/model/${model.slug}`} className="block relative aspect-[3/4] overflow-hidden bg-[#161822]">
+      {/* Curved Image Container (26px border radius) */}
+      <Link href={`/model/${model.slug}`} className="block relative aspect-[3/4] overflow-hidden rounded-[24px] bg-[#14141d] border border-[#26201b]">
         <img
           src={imageUrl}
           alt={model.name}
           loading="lazy"
-          className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+          className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-108"
           onError={(e) => {
-            // graceful fallback to placeholder if an image errors
             (e.target as HTMLImageElement).src = 'https://bestmodelibiza.com/wp-content/uploads/2023/05/Best-Model-Ibiza-1.png';
           }}
         />
 
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0e0f16] via-transparent to-black/30 pointer-events-none" />
+        {/* Cinematic Gradient Vignette */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/35 pointer-events-none" />
 
         {/* Top Badges */}
         <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
           {model.is_vip ? (
-            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-gold-500/90 text-black text-[11px] font-bold tracking-wider uppercase shadow-lg">
-              <Sparkles className="w-3 h-3 fill-black" />
+            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-gradient-to-r from-copper-500 to-copper-600 text-white text-[11px] font-extrabold tracking-wider uppercase shadow-[0_0_15px_rgba(200,125,85,0.5)]">
+              <Sparkles className="w-3 h-3 fill-white" />
               VIP
             </span>
           ) : (
-            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-neutral-700 text-neutral-300 text-[11px] font-medium">
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md border border-[#362b24] text-neutral-300 text-[11px] font-medium">
               <CheckCircle className="w-3 h-3 text-emerald-400" />
               Verified
             </span>
           )}
 
           {/* Photos Count Badge */}
-          <span className="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-black/70 backdrop-blur-md text-white text-[11px] font-medium border border-white/10">
-            <Camera className="w-3 h-3 text-neutral-300" />
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-md text-white text-[11px] font-medium border border-white/10">
+            <Camera className="w-3 h-3 text-copper-400" />
             {photoCount}
           </span>
         </div>
 
-        {/* Active Now Status Indicator */}
-        <div className="absolute bottom-3 left-3 flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-black/70 backdrop-blur-md text-[10px] text-neutral-300 border border-white/10 pointer-events-none">
+        {/* Active Availability Status Pill */}
+        <div className="absolute bottom-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-md text-[10px] text-neutral-200 border border-[#302620] pointer-events-none">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
           <span>Available Now</span>
         </div>
       </Link>
 
       {/* Card Info Details */}
-      <div className="p-4 flex flex-col flex-grow justify-between bg-[#0e0f16]">
+      <div className="p-3.5 flex flex-col flex-grow justify-between">
         <div>
           {/* Location & Nationality */}
-          <div className="flex items-center justify-between text-[11px] text-neutral-400 mb-1.5">
-            <span className="flex items-center gap-1 truncate text-gold-400/90 font-medium">
-              <MapPin className="w-3 h-3 text-gold-500 shrink-0" />
+          <div className="flex items-center justify-between text-[11px] mb-1.5">
+            <span className="flex items-center gap-1 truncate text-copper-400 font-medium">
+              <MapPin className="w-3 h-3 text-copper-500 shrink-0" />
               <span className="truncate">{primaryCity}</span>
             </span>
             {model.nationality && (
-              <span className="uppercase tracking-wider px-1.5 py-0.5 rounded bg-[#171924] text-[10px] text-neutral-300 border border-[#232636]">
+              <span className="uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#16120f] text-[10px] text-copper-300 border border-[#2d221b] font-semibold">
                 {model.nationality}
               </span>
             )}
@@ -84,45 +82,45 @@ export function ModelCard({ model }: ModelCardProps) {
 
           {/* Model Name */}
           <Link href={`/model/${model.slug}`}>
-            <h3 className="text-base font-bold text-white group-hover:text-gold-400 transition-colors tracking-wide uppercase truncate">
+            <h3 className="text-base font-extrabold text-white group-hover:text-copper-400 transition-colors tracking-wide uppercase truncate">
               {model.name}
             </h3>
           </Link>
 
-          {/* Physical Stats Pills */}
-          <div className="mt-2.5 flex items-center gap-2 text-[11px] text-neutral-400">
+          {/* Physical Stats Pills with Curved Edges */}
+          <div className="mt-2.5 flex items-center gap-1.5 text-[11px] text-neutral-400">
             {model.age && (
-              <span className="bg-[#151722] px-2 py-0.5 rounded text-neutral-300 border border-[#232636]">
+              <span className="bg-[#141217] px-2 py-0.5 rounded-lg text-neutral-300 border border-[#241e1b]">
                 {model.age} yrs
               </span>
             )}
             {model.height && (
-              <span className="bg-[#151722] px-2 py-0.5 rounded text-neutral-300 border border-[#232636]">
+              <span className="bg-[#141217] px-2 py-0.5 rounded-lg text-neutral-300 border border-[#241e1b]">
                 {model.height.split('/')[0].trim()}
               </span>
             )}
             {model.breast && (
-              <span className="bg-[#151722] px-2 py-0.5 rounded text-neutral-300 border border-[#232636]">
+              <span className="bg-[#141217] px-2 py-0.5 rounded-lg text-copper-300 border border-[#2d221b]">
                 Cup {model.breast}
               </span>
             )}
           </div>
         </div>
 
-        {/* Action Buttons Row */}
-        <div className="mt-4 pt-3 border-t border-[#1a1c27] flex items-center gap-2">
+        {/* Action Buttons Row with Curved Corners */}
+        <div className="mt-4 pt-3 border-t border-[#1e1916] flex items-center gap-2">
           <Link
             href={`/model/${model.slug}`}
-            className="flex-grow text-center py-2 px-3 rounded-xl bg-[#171925] hover:bg-gold-500 hover:text-black text-neutral-200 text-xs font-semibold border border-[#282b3d] hover:border-gold-500 transition-all"
+            className="flex-grow text-center py-2.5 px-3 rounded-2xl bg-[#14131a] hover:bg-gradient-to-r hover:from-copper-500 hover:to-copper-600 hover:text-white text-neutral-200 text-xs font-bold border border-[#2a221c] hover:border-copper-500 transition-all shadow-sm"
           >
-            View Book
+            View Portfolio
           </Link>
           <a
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
             title="Chat on WhatsApp"
-            className="p-2 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/25 border border-emerald-500/30 text-emerald-400 hover:text-emerald-300 transition-all flex items-center justify-center shrink-0"
+            className="p-2.5 rounded-2xl bg-emerald-500/10 hover:bg-emerald-500/25 border border-emerald-500/30 text-emerald-400 hover:text-emerald-300 transition-all flex items-center justify-center shrink-0"
           >
             <MessageSquare className="w-4 h-4" />
           </a>
