@@ -2,26 +2,12 @@ import React from 'react';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { getModelBySlug, getRelatedModels, getAllModels } from '@/lib/models';
-import { LightboxGallery } from '@/components/LightboxGallery';
-import { ModelCard } from '@/components/ModelCard';
+import { getModelBySlug, getRelatedModels, getAllModels, getPrevAndNextModels } from '@/lib/models';
+import { resolveImageUrl } from '@/lib/cloudflare';
 import { BookingButton } from './BookingButton';
-import {
-  Sparkles,
-  MapPin,
-  Calendar,
-  Ruler,
-  Eye,
-  Heart,
-  Plane,
-  ShieldCheck,
-  MessageSquare,
-  ChevronRight,
-  Phone,
-  CheckCircle,
-  Crown,
-  Compass,
-} from 'lucide-react';
+import { ModelProfileClient } from './ModelProfileClient';
+import { NewsletterSection } from '@/components/NewsletterSection';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface ModelPageProps {
   params: {
@@ -65,209 +51,126 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
     notFound();
   }
 
+  const { prev, next } = await getPrevAndNextModels(model.slug);
   const related = await getRelatedModels(model.slug, 4);
   const primaryCity = model.cities?.[0] || 'Ibiza, Spain';
-  const whatsappUrl = `https://wa.me/${model.whatsapp || '34678012530'}?text=${encodeURIComponent(
-    `Hello, I would like to inquire about ${model.name} in ${primaryCity} via Best Model Ibiza.`
-  )}`;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+    <div className="bg-[#050507] min-h-screen text-white">
       
-      {/* Breadcrumb Navigation */}
-      <nav className="flex items-center gap-2 text-xs text-neutral-400">
-        <Link href="/" className="hover:text-copper-400 transition-colors">Home</Link>
-        <ChevronRight className="w-3.5 h-3.5 text-neutral-600" />
-        <Link href="/" className="hover:text-copper-400 transition-colors">Models</Link>
-        <ChevronRight className="w-3.5 h-3.5 text-neutral-600" />
-        <span className="text-copper-300 font-semibold uppercase">{model.name}</span>
-      </nav>
-
-      {/* Main Two-Column Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-        
-        {/* Left Column: Full Photo Gallery with Curves (7 cols on desktop) */}
-        <div className="lg:col-span-7">
-          <LightboxGallery images={model.gallery} modelName={model.name} />
-        </div>
-
-        {/* Right Column: Model Specs & Booking Card with Curves (5 cols on desktop) */}
-        <div className="lg:col-span-5 space-y-6">
+      {/* Top Bar: Breadcrumb + Prev/Next Model Switcher */}
+      <div className="border-b border-[#1c1814] bg-[#08080c]/80 backdrop-blur-md sticky top-20 z-40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between text-xs">
           
-          <div className="bg-[#09090e] p-6 sm:p-8 rounded-[36px] border border-[#241e19] shadow-[0_0_35px_rgba(200,125,85,0.15)] space-y-6">
-            
-            {/* Top Badges */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                {model.is_vip ? (
-                  <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-copper-500 to-copper-600 text-white text-xs font-black uppercase tracking-wider shadow-[0_0_15px_rgba(200,125,85,0.45)]">
-                    <Sparkles className="w-3.5 h-3.5 fill-white" />
-                    VIP Exclusive
-                  </span>
-                ) : (
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#121118] border border-[#2a221b] text-neutral-300 text-xs font-medium">
-                    <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />
-                    Verified Roster
-                  </span>
-                )}
+          {/* Breadcrumb Navigation */}
+          <div className="flex items-center gap-2 text-neutral-400">
+            <Link href="/" className="hover:text-copper-400 transition-colors">
+              Ibiza Escorts
+            </Link>
+            <ChevronRight className="w-3.5 h-3.5 text-neutral-600" />
+            <span className="text-copper-300 font-bold uppercase">{model.name}</span>
+          </div>
 
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#13121b] text-[11px] text-emerald-400 border border-[#221c17]">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  Available Tonight
-                </span>
-              </div>
-
-              {model.nationality && (
-                <span className="text-xs uppercase font-bold text-copper-300 px-3 py-1 rounded-full bg-[#16120e] border border-[#2d221a]">
-                  {model.nationality}
-                </span>
-              )}
-            </div>
-
-            {/* Model Name & Location */}
-            <div>
-              <h1 className="text-3xl sm:text-4xl font-extrabold text-white uppercase tracking-wide">
-                <span className="text-copper-gradient">{model.name}</span>
-              </h1>
-              <div className="flex items-center gap-2 mt-2 text-sm text-copper-400">
-                <MapPin className="w-4 h-4 shrink-0 text-copper-500" />
-                <span className="font-semibold">{primaryCity}</span>
-                {model.cities?.length > 1 && (
-                  <span className="text-xs text-neutral-400">
-                    (+{model.cities.length - 1} more locations)
-                  </span>
-                )}
-              </div>
-            </div>
-
-            {/* Bio Description with Curves */}
-            {model.bio && (
-              <div className="bg-[#121118] p-5 rounded-[24px] border border-[#261f1a]">
-                <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed italic">
-                  &ldquo;{model.bio}&rdquo;
-                </p>
-              </div>
-            )}
-
-            {/* Physical Attributes Matrix with Curved Pills */}
-            <div>
-              <div className="flex items-center justify-between mb-3">
-                <h3 className="text-xs font-bold text-neutral-400 uppercase tracking-wider flex items-center gap-1.5">
-                  <Ruler className="w-3.5 h-3.5 text-copper-400" />
-                  Model Specifications &amp; Stats
-                </h3>
-                <span className="text-[10px] text-copper-400 font-semibold">100% Genuine</span>
-              </div>
-
-              <div className="grid grid-cols-2 gap-2.5 text-xs">
-                {model.age && (
-                  <div className="bg-[#121118] p-3 rounded-2xl border border-[#221c17] flex justify-between items-center">
-                    <span className="text-neutral-400">Age:</span>
-                    <strong className="text-white font-bold">{model.age} years</strong>
-                  </div>
-                )}
-                {model.height && (
-                  <div className="bg-[#121118] p-3 rounded-2xl border border-[#221c17] flex justify-between items-center">
-                    <span className="text-neutral-400">Height:</span>
-                    <strong className="text-white font-bold">{model.height}</strong>
-                  </div>
-                )}
-                {model.weight && (
-                  <div className="bg-[#121118] p-3 rounded-2xl border border-[#221c17] flex justify-between items-center">
-                    <span className="text-neutral-400">Weight:</span>
-                    <strong className="text-white font-bold">{model.weight}</strong>
-                  </div>
-                )}
-                {model.breast && (
-                  <div className="bg-[#121118] p-3 rounded-2xl border border-[#221c17] flex justify-between items-center">
-                    <span className="text-neutral-400">Breast:</span>
-                    <strong className="text-copper-300 font-bold">
-                      {model.breast} {model.breast_type ? `(${model.breast_type})` : ''}
-                    </strong>
-                  </div>
-                )}
-                {model.hair && (
-                  <div className="bg-[#121118] p-3 rounded-2xl border border-[#221c17] flex justify-between items-center">
-                    <span className="text-neutral-400">Hair:</span>
-                    <strong className="text-white font-bold">{model.hair}</strong>
-                  </div>
-                )}
-                {model.eye && (
-                  <div className="bg-[#121118] p-3 rounded-2xl border border-[#221c17] flex justify-between items-center">
-                    <span className="text-neutral-400">Eyes:</span>
-                    <strong className="text-white font-bold">{model.eye}</strong>
-                  </div>
-                )}
-                {model.available_for && (
-                  <div className="bg-[#121118] p-3 rounded-2xl border border-[#221c17] col-span-2 flex justify-between items-center">
-                    <span className="text-neutral-400">Available For:</span>
-                    <strong className="text-emerald-400 font-bold">{model.available_for}</strong>
-                  </div>
-                )}
-                {model.travel && (
-                  <div className="bg-[#121118] p-3 rounded-2xl border border-[#221c17] col-span-2 flex justify-between items-center">
-                    <span className="text-neutral-400 flex items-center gap-1">
-                      <Plane className="w-3.5 h-3.5 text-copper-400" />
-                      Travel Availability:
-                    </span>
-                    <strong className="text-copper-300 font-bold">{model.travel}</strong>
-                  </div>
-                )}
-                {model.orientation && (
-                  <div className="bg-[#121118] p-3 rounded-2xl border border-[#221c17] col-span-2 flex justify-between items-center">
-                    <span className="text-neutral-400">Orientation:</span>
-                    <strong className="text-white font-bold">{model.orientation}</strong>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* Direct Booking & VIP Contact Action Center */}
-            <div className="pt-4 border-t border-[#1f1a16] space-y-3">
-              <BookingButton model={model} />
-
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-4 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(16,185,129,0.35)]"
+          {/* Prev / Next Model Navigation */}
+          <div className="flex items-center gap-5 font-bold tracking-wider uppercase text-[11px]">
+            {prev && (
+              <Link
+                href={`/model/${prev.slug}`}
+                className="flex items-center gap-1 text-neutral-400 hover:text-copper-400 transition-colors group"
               >
-                <MessageSquare className="w-4 h-4" />
-                <span>Instant Chat on VIP WhatsApp</span>
-              </a>
-
-              <div className="p-3.5 rounded-2xl bg-[#121118] border border-[#201b17] flex items-center justify-center gap-2 text-[11px] text-neutral-300">
-                <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>100% Verified Photos &bull; Direct Agency Service &bull; Total Privacy</span>
-              </div>
-            </div>
-
+                <ChevronLeft className="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform" />
+                <span>PREV</span>
+              </Link>
+            )}
+            <span className="text-neutral-700">|</span>
+            {next && (
+              <Link
+                href={`/model/${next.slug}`}
+                className="flex items-center gap-1 text-neutral-400 hover:text-copper-400 transition-colors group"
+              >
+                <span>NEXT</span>
+                <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+              </Link>
+            )}
           </div>
 
         </div>
-
       </div>
 
-      {/* Similar / Recommended Models */}
-      {related.length > 0 && (
-        <section className="pt-12 border-t border-[#1e1916]">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-bold text-white tracking-wide uppercase">
-              Similar Verified Models
-            </h2>
-            <Link href="/" className="text-xs text-copper-400 hover:underline">
-              View All Portfolios &rarr;
-            </Link>
-          </div>
+      {/* Main Container */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+        
+        {/* Interactive Model Profile: Left Sticky Sidebar + Right 2-Column Photo Stream */}
+        <ModelProfileClient model={model} primaryCity={primaryCity} />
 
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-            {related.map((m) => (
-              <ModelCard key={m.id} model={m} />
-            ))}
-          </div>
-        </section>
-      )}
+        {/* Bottom Section: "OTHER GIRLS IN [LOCATION]" */}
+        {related.length > 0 && (
+          <section className="pt-12 border-t border-[#1e1915]">
+            <div className="flex items-center justify-between mb-8">
+              <div>
+                <span className="text-xs font-bold text-copper-400 uppercase tracking-widest block mb-1">
+                  Discover More
+                </span>
+                <h2 className="text-2xl font-extrabold text-white tracking-wide uppercase">
+                  OTHER GIRLS IN {primaryCity.toUpperCase()}
+                </h2>
+              </div>
+              <Link
+                href="/"
+                className="text-xs font-bold text-copper-400 hover:text-copper-300 transition-colors uppercase tracking-wider flex items-center gap-1"
+              >
+                <span>View All Models</span>
+                <ChevronRight className="w-4 h-4" />
+              </Link>
+            </div>
 
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+              {related.map((m) => {
+                const img = resolveImageUrl(m.cover_image);
+                return (
+                  <Link
+                    key={m.id}
+                    href={`/model/${m.slug}`}
+                    className="group relative bg-[#09090e] rounded-[28px] overflow-hidden border border-[#221c17] hover:border-copper-500/70 transition-all duration-500 flex flex-col p-2.5 shadow-lg hover:shadow-[0_0_25px_rgba(200,125,85,0.25)]"
+                  >
+                    <div className="relative aspect-[3/4] rounded-[24px] overflow-hidden bg-[#14141d] border border-[#26201b]">
+                      <img
+                        src={img}
+                        alt={m.name}
+                        className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-108"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/30 pointer-events-none" />
+                      
+                      {/* Top Badges */}
+                      <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between pointer-events-none">
+                        <span className="px-2 py-0.5 rounded-full bg-copper-500 text-black text-[9px] font-black uppercase shadow">
+                          {m.is_vip ? 'VIP' : 'NEW PHOTOS'}
+                        </span>
+                        <span className="px-2 py-0.5 rounded-full bg-black/75 backdrop-blur-md text-white text-[9px] font-bold border border-white/10">
+                          VERIFIED
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="p-3 text-center">
+                      <h3 className="text-sm font-extrabold text-white uppercase group-hover:text-copper-400 transition-colors truncate">
+                        {m.name}
+                      </h3>
+                      <p className="text-[11px] text-neutral-400 truncate mt-0.5">
+                        {m.nationality || 'Exclusive Model'} &bull; {m.cities?.[0] || 'Ibiza'}
+                      </p>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </section>
+        )}
+
+        {/* Newsletter Subscription Bar (Matching Blue Monday Style) */}
+        <NewsletterSection />
+
+      </div>
     </div>
   );
 }

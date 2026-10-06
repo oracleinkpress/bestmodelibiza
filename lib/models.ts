@@ -79,6 +79,20 @@ export async function getModelBySlug(slug: string): Promise<Model | null> {
   return found || null;
 }
 
+export async function getPrevAndNextModels(slug: string): Promise<{ prev: Model; next: Model }> {
+  const all = await getAllModels();
+  const currentIndex = all.findIndex(m => m.slug.toLowerCase() === slug.toLowerCase());
+  
+  if (currentIndex === -1) {
+    return { prev: all[0], next: all[1] || all[0] };
+  }
+
+  const prev = currentIndex > 0 ? all[currentIndex - 1] : all[all.length - 1];
+  const next = currentIndex < all.length - 1 ? all[currentIndex + 1] : all[0];
+
+  return { prev, next };
+}
+
 export async function getRelatedModels(currentSlug: string, limit: number = 4): Promise<Model[]> {
   const current = await getModelBySlug(currentSlug);
   const all = await getAllModels();
