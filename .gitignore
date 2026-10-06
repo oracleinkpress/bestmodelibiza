@@ -1,0 +1,14 @@
+# WordPress legacy dump
+public_html/
+seed_data.sql
+extracted_models.json
+
+# Next.js
+.next/
+out/
+node_modules/
+.env*.local
+
+# System
+.DS_Store
+*.log
